@@ -28,6 +28,10 @@ TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_VARIANT := generic
 
+# Default language - English only
+TW_DEFAULT_LANGUAGE := en
+TW_EXTRA_LANGUAGES := false
+
 # Assert
 TARGET_OTA_ASSERT_DEVICE := lx04
 
@@ -41,7 +45,7 @@ TARGET_NO_BOOTLOADER := true
 
 # File systems
 BOARD_HAS_LARGE_FILESYSTEM := true
-#BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16777216 # This is the maximum known partition size, but it can be higher, so we just omit it
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16777216 # This is the maximum known partition size, but it can be higher, so we just omit it
 BOARD_SYSTEMIMAGE_PARTITION_TYPE := ext4
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
@@ -66,8 +70,8 @@ BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
 BOARD_KERNEL_IMAGE_NAME := zImage-dtb
 #TARGET_KERNEL_ARCH := arm
 #TARGET_KERNEL_HEADER_ARCH := arm
-#TARGET_KERNEL_SOURCE := kernel/xiaomi/mi_lx04
-#TARGET_KERNEL_CONFIG := mi_lx04_defconfig
+#TARGET_KERNEL_SOURCE := kernel/xiaomi/lx04
+#TARGET_KERNEL_CONFIG := lx04_defconfig
 
 # Hack: prevent anti rollback
 PLATFORM_SECURITY_PATCH := 2099-12-31
@@ -93,25 +97,40 @@ TW_INTERNAL_STORAGE_PATH := "/data/media/0"
 TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
 TW_EXTERNAL_STORAGE_PATH := "/sdcard"
 TW_EXTERNAL_STORAGE_MOUNT_POINT :="sdcard"
-TW_INCLUDE_CRYPTO := true
-TW_CRYPTO_USE_SYSTEM_VOLD := true
 TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
 TW_DEFAULT_BRIGHTNESS := 128
 TW_CUSTOM_CPU_TEMP_PATH := /sys/devices/virtual/thermal/thermal_zone1/temp
-TW_EXCLUDE_SUPERSU := true
-TW_DEFAULT_LANGUAGE := zh_cn
-TW_INCLUDE_FUSE_EXFAT := true
-TW_INCLUDE_FUSE_NTFS := true
-TW_IGNORE_MISC_WIPE_DATA := true
 TW_USE_TOOLBOX := true
 TW_FLASH_FROM_STORAGE := true
 TW_NEW_ION_HEAP := true
 TW_MTP_DEVICE := "/dev/mtp_usb"
-TW_EXCLUDE_TWRPAPP := true
 TW_BACKUP_DATA_MEDIA := true
 TWHAVE_SELINUX := true
-TWRP_INCLUDE_LOGCAT := true
+
+# Exclude unnecessary features to reduce image size
+TW_INCLUDE_FUSE_EXFAT := false
+TW_INCLUDE_FUSE_NTFS := false
+
+TWRP_INCLUDE_LOGCAT := false
+TW_EXCLUDE_TWRPAPP := true
+
+TW_EXCLUDE_MTP := false
+TW_EXCLUDE_USB_STORAGE := false
+TW_NO_USB_STORAGE := false
+
+# Disable crypto support if not needed
+TW_INCLUDE_CRYPTO := false
+TW_CRYPTO_USE_SYSTEM_VOLD := false
+
+TW_EXCLUDE_SUPERSU := true
+TW_IGNORE_MISC_WIPE_DATA := true
+TW_EXCLUDE_HAPTICS := true
+TW_EXCLUDE_FUSE_SDEXT := true
+
+# Optimize compilation flags (if applicable, set in build system)
+# Example flags, may be set in your build environment:
+CFLAGS += -Oz -flto
+LDFLAGS += -Wl,--strip-all -flto
 
 #Recovery
 BOARD_USES_RECOVERY_AS_ROOT := false
-
