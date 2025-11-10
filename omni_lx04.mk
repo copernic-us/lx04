@@ -34,7 +34,7 @@ $(call inherit-product, vendor/omni/config/gsm.mk)
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := lx04
 PRODUCT_NAME := omni_lx04
-PRODUCT_BRAND := XiaoMi
-PRODUCT_MODEL := LX04
+PRODUCT_BRAND := Xiaomi
+PRODUCT_MODEL := LX04g
 PRODUCT_MANUFACTURER := xiaomi
-PRODUCT_RELEASE_NAME := XiaoMi LX04
+PRODUCT_RELEASE_NAME := Xiaomi LX04g
