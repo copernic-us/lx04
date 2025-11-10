@@ -40,7 +40,7 @@ After that sync your sources:
 
 $ repo sync
 
-Download or clone this repository, go to /twrp/device and create xiaomi/mi_lx04. Copy this repo to your created folder
+Download or clone this repository, go to /twrp/ and create folder /device/xiaomi/lx04. Copy this repo to your created folder
 
 Build your recovery:
 
