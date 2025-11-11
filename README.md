@@ -32,6 +32,11 @@ $ cd twrp
 
 $ repo init -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-8.1
 
+as an addition You can try to build it from different branch available at:
+
+https://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni/tree/twrp-8.1
+https://github.com/omnirom/android/tree/android-8.1
+
 To initialize a shallow clone, which will save even more space, use a command like this:
 
 $ repo init --depth=1 -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-8.1
